@@ -17,10 +17,35 @@ A centralized platform where job seekers can register, build a profile, upload r
 | Mahmoud Abdalla | MahmoudAbdalla28 |
 
 ## Technologies
-- TBD (frontend, backend, database, AI integration — to be finalized during sprint planning)
+- **Framework:** Next.js (App Router) + TypeScript
+- **Styling:** Tailwind CSS
+- **Database:** SQLite via Prisma ORM
+- **Authentication:** NextAuth.js (credentials-based, hashed with bcrypt)
+- **AI integration:** TBD — planned for the resume feedback / job-matching feature
 
 ## Setup Instructions
-_To be added once the initial tech stack is chosen and scaffolded._
+1. Clone the repo and install dependencies:
+   ```bash
+   git clone https://github.com/MahmoudAbdalla28/CareerConnect.git
+   cd CareerConnect
+   npm install
+   ```
+2. Create a `.env` file in the project root:
+   ```bash
+   DATABASE_URL="file:/absolute/path/to/CareerConnect/prisma/dev.db"
+   NEXTAUTH_SECRET="generate-with-openssl-rand-base64-32"
+   NEXTAUTH_URL="http://localhost:3000"
+   ```
+   Use an **absolute path** for `DATABASE_URL` — a relative path resolves differently for the Prisma CLI vs. the running app.
+3. Apply the database schema:
+   ```bash
+   npx prisma migrate dev
+   ```
+4. Run the dev server:
+   ```bash
+   npm run dev
+   ```
+   Visit http://localhost:3000.
 
 ## Proposed Features
 - User registration, authentication, and profile management
