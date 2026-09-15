@@ -142,7 +142,7 @@ export default function ProfilePage() {
         {profile.resumeUrl ? (
           <p className="mt-3 text-sm text-slate-700">
             Current resume:{" "}
-            <a href={profile.resumeUrl} target="_blank" rel="noopener noreferrer" className="font-medium text-teal-700 hover:underline">
+            <a href="/api/profile/resume/download" target="_blank" rel="noopener noreferrer" className="font-medium text-teal-700 hover:underline">
               {profile.resumeName}
             </a>
           </p>

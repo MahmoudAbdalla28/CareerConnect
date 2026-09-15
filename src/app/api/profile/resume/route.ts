@@ -1,7 +1,6 @@
 import { NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
-import { mkdir, writeFile } from "fs/promises";
-import path from "path";
+import { put } from "@vercel/blob";
 import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 
@@ -38,19 +37,17 @@ export async function POST(request: Request) {
   }
 
   const userId = (session.user as { id: string }).id;
-  const uploadsDir = path.join(process.cwd(), "public", "uploads", "resumes");
-  await mkdir(uploadsDir, { recursive: true });
+  const pathname = `resumes/${userId}${extensionFor(file.type)}`;
 
-  const fileName = `${userId}-${Date.now()}${extensionFor(file.type)}`;
-  const filePath = path.join(uploadsDir, fileName);
-  const buffer = Buffer.from(await file.arrayBuffer());
-  await writeFile(filePath, buffer);
-
-  const resumeUrl = `/uploads/resumes/${fileName}`;
+  const blob = await put(pathname, file, {
+    access: "private",
+    addRandomSuffix: false,
+    allowOverwrite: true,
+  });
 
   const user = await prisma.user.update({
     where: { id: userId },
-    data: { resumeName: file.name, resumeUrl },
+    data: { resumeName: file.name, resumeUrl: blob.url },
     select: { resumeName: true, resumeUrl: true },
   });
 

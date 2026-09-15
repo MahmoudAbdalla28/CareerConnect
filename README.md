@@ -19,8 +19,10 @@ A centralized platform where job seekers can register, build a profile, upload r
 ## Technologies
 - **Framework:** Next.js (App Router) + TypeScript
 - **Styling:** Tailwind CSS
-- **Database:** SQLite via Prisma ORM
+- **Database:** Postgres (Neon, via Vercel Marketplace) + Prisma ORM
+- **File storage:** Vercel Blob (private access) for resumes
 - **Authentication:** NextAuth.js (credentials-based, hashed with bcrypt)
+- **Hosting:** Vercel
 - **AI integration:** TBD — planned for the resume feedback / job-matching feature
 
 ## Setup Instructions
@@ -30,13 +32,20 @@ A centralized platform where job seekers can register, build a profile, upload r
    cd CareerConnect
    npm install
    ```
-2. Create a `.env` file in the project root:
+2. Link the project to Vercel and pull environment variables (requires
+   access to the Vercel project — ask a teammate to add you as a
+   collaborator first):
    ```bash
-   DATABASE_URL="file:/absolute/path/to/CareerConnect/prisma/dev.db"
+   npx vercel link
+   npx vercel env pull .env.local
+   ```
+   This provides `DATABASE_URL` (Neon Postgres) and the Blob store
+   credentials automatically. Then add these two to `.env` yourself
+   (not provisioned by any integration):
+   ```bash
    NEXTAUTH_SECRET="generate-with-openssl-rand-base64-32"
    NEXTAUTH_URL="http://localhost:3000"
    ```
-   Use an **absolute path** for `DATABASE_URL` — a relative path resolves differently for the Prisma CLI vs. the running app.
 3. Apply the database schema:
    ```bash
    npx prisma migrate dev
@@ -46,6 +55,8 @@ A centralized platform where job seekers can register, build a profile, upload r
    npm run dev
    ```
    Visit http://localhost:3000.
+
+**Live deployment:** https://career-connect.vercel.app
 
 ## Proposed Features
 - User registration, authentication, and profile management
