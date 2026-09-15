@@ -160,6 +160,34 @@ below; ask me to attach the raw transcript if the TA wants it verbatim.
 
 ---
 
+## Entry 7: Sprint Planning, Team Process, and GitHub Issues Setup
+
+- **Purpose of AI Use:** Project planning / documentation / GitHub setup
+- **Prompt/Response:** Asked Claude to set up the GitHub Project board,
+  create GitHub Issues for the 10 user stories with labels and task
+  checklists, and draft the Sprint Planning (backlog, prioritization,
+  risks, effort estimation, capacity) and Team Process (workflow,
+  branching, PR/review rules, DoR/DoD) documents required by the brief.
+- **AI-Suggested Content:** A 5-column project board linked to the repo;
+  10 GitHub Issues (4 closed as already-implemented, 6 left in Backlog)
+  with `user-story`, `priority:*`, and `area:*` labels; `docs/sprint-planning.md`
+  and `docs/team-process.md`.
+- **Validation:** Reviewed the backlog/priority/risk content against the
+  actual state of the repo (e.g. risks around SQLite and local file
+  storage are real, verified constraints, not generic filler). Confirmed
+  the real Sprint 1 deadline (Sept 28, 2026) with the team member and
+  had it incorporated into the risk section and Appendix A.
+- **Decision:** Accepted, with one item flagged incomplete: the team
+  capacity estimate (10 hrs/week) is a placeholder pending the team
+  member's real number.
+- **Reflection:** AI was efficient at generating the scaffolding of
+  process documents (branching convention, DoR/DoD, PR checklist) that
+  are fairly standard practice — but the actual risk assessment needed
+  grounding in this specific project's real technical decisions (SQLite,
+  local file storage) rather than generic "risks might include..." text,
+  which required explicit correction/direction.
+- **Responsible Person:** Mahmoud Abdalla
+
 ## Ongoing
 
 Every AI-assisted activity for the remainder of Sprint 1 (further coding,
