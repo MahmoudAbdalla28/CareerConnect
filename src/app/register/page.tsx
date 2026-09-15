@@ -26,8 +26,8 @@ export default function RegisterPage() {
     });
 
     if (!res.ok) {
-      const data = await res.json();
-      setError(data.error ?? "Something went wrong.");
+      const data = await res.json().catch(() => null);
+      setError(data?.error ?? "Something went wrong. Please try again.");
       setSubmitting(false);
       return;
     }
