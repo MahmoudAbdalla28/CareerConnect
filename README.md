@@ -56,7 +56,7 @@ A centralized platform where job seekers can register, build a profile, upload r
    ```
    Visit http://localhost:3000.
 
-**Live deployment:** https://career-connect.vercel.app
+**Live deployment:** https://career-connect-seven-eta.vercel.app
 
 ## Proposed Features
 - User registration, authentication, and profile management
